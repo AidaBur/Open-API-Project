@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TheDogAPI Web App</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./assets/icons/dog.ico">
-    
-    <link rel="stylesheet" href="./css/index.css">
-</head>
-
-<body>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
     <div class="header-container">
-        <header class="header">
-            <h1>Discover Your Perfect<br>Dog Breed</h1>
-            </div>
-            <div class="header__switch-model">
-              <label class="switch">
-                  <input type="radio" id="images" name="model" value="images" checked>
-                  <span class="switch-button">Dogs Images</span>
-              </label>
-              <label class="switch">
-                  <input type="radio" id="breeds" name="model" value="breeds">
-                  <span class="switch-button">Dogs Breeds</span>
-              </label>
-          </div>
-          
-          
-        </header>
-
-        <main>
-            <section class="images">
-                <h3>Enjoy random images of awesome dogs!</h3>
-                <div class="section__container">
-
-                </div>
-            </section>
-            <section class="breeds">
-                <h3>All you need to know about dogs breeds!</h3>
-                <div class="section__container">
-
-                </div>
-            </section>
-        </main>
+      <div class="logo-container">
+        <img src="img/dogLogo.png" alt="DogAPI Logo" class="logo" />
+      </div>
+      <h1>Discover Your Perfect<br />Dog Breed</h1>
+      <div class="header__switch-model">
+        <label class="switch">
+          <input type="radio" id="images" name="model" value="images" checked />
+          <span class="switch-button">Dogs Images</span>
+        </label>
+        <label class="switch">
+          <input type="radio" id="breeds" name="model" value="breeds" />
+          <span class="switch-button">Dogs Breeds</span>
+        </label>
+      </div>
     </div>
-    <script src="./js/index.js"></script>
-</body>
 
+    <main>
+      <section class="images">
+        <h3>Discover Amazing Dog Photos</h3>
+        <p>
+          Browse through a collection of random dog images that are sure to
+          bring a smile to your face!
+        </p>
+        <div class="section__container"></div>
+      </section>
+      <section class="breeds">
+        <h3>Learn About Different Dog Breeds</h3>
+        <p>
+          Find detailed information about various dog breeds, including their
+          characteristics, care needs, and more.
+        </p>
+        <div class="section__container"></div>
+      </section>
+    </main>
+    <script src="./js/index.js"></script>
+  </body>
 </html>

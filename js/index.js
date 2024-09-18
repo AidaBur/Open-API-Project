@@ -54,7 +54,7 @@ async function fetchData(url, model, container) {
     })
     .then(data => {
       data.forEach(el => appendDataToArray(el, model));
-      // очищаем контейнер перед добавлением данных
+
       container.innerHTML = '';
       currentDataArray.forEach(el => container.appendChild(createDataCard(el, model)));
     })
