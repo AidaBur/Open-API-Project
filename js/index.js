@@ -1,24 +1,31 @@
+// Get references to HTML elements
 const imagesSection = document.querySelector('.images');
 const breedsSection = document.querySelector('.breeds');
 const radios = document.querySelector('.header__switch-model');
 
+// Map models to their respective sections
 const modelToSectionMap = new Map();
 modelToSectionMap.set('images', imagesSection);
 modelToSectionMap.set('breeds', breedsSection);
 
+// Map models to their respective API endpoints
 const modelToEndpointMap = new Map();
 modelToEndpointMap.set('images', '/images/search?limit=30&');
 modelToEndpointMap.set('breeds', '/breeds?');
 
+// API configuration
 const apiUrl = 'https://api.thedogapi.com/v1';
 const apiKey = 'live_v17ilxbRIfyshBmjfI9cWNTKKCOMhmaJqx7TPuBZfDN8Xk7Sl0MGfth4bftySHfS';
 
+// Initialize current model and data array
 let currentModel = 'images';
 const currentDataArray = [];
 
+// Event listener for model switch
 radios.addEventListener('click', (event) => {
   const target = event.target;
 
+  // Check if the clicked element is a radio button
   if (target.tagName === 'INPUT' && target.type === 'radio') {
     switch (target.id) {
       case 'images':
@@ -36,52 +43,58 @@ radios.addEventListener('click', (event) => {
   }
 });
 
+// Function to generate page elements based on the current model
 const generatePageElements = (model) => {
   const container = modelToSectionMap.get(model).querySelector('.section__container');
-  currentDataArray.length = 0;
-  showLoadingSpinner(container);
+  currentDataArray.length = 0; // Clear current data array
+  showLoadingSpinner(container); // Show loading spinner
   const requestUrl = `${apiUrl}${modelToEndpointMap.get(model)}api_key=${apiKey}`;
-  fetchData(requestUrl, model, container);
+  fetchData(requestUrl, model, container); // Fetch data from API
 }
 
+// Function to fetch data from API
 async function fetchData(url, model, container) {
   fetch(url)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Request failed');
+        throw new Error('Request failed'); // Handle request errors
       }
-      return response.json();
+      return response.json(); // Parse JSON response
     })
     .then(data => {
-      data.forEach(el => appendDataToArray(el, model));
+      data.forEach(el => appendDataToArray(el, model)); // Process data
 
-      container.innerHTML = '';
-      currentDataArray.forEach(el => container.appendChild(createDataCard(el, model)));
+      container.innerHTML = ''; // Clear existing content
+      currentDataArray.forEach(el => container.appendChild(createDataCard(el, model))); // Append new data
     })
     .catch(error => {
-      console.error('An error occurred:', error);
+      console.error('An error occurred:', error); // Log errors
     });
 }
 
+// Function to show loading spinner while fetching data
 const showLoadingSpinner = (container) => {
-  container.innerHTML = '';
+  container.innerHTML = ''; // Clear existing content
   const spinnerDiv = document.createElement('div');
   spinnerDiv.classList.add('loading-spinner');
-  let circle;
+  
+  // Create spinner circles
   for (let i = 0; i < 12; i++) {
-    circle = document.createElement('div');
+    const circle = document.createElement('div');
     circle.classList.add('circle');
     spinnerDiv.appendChild(circle);
   }
-  container.appendChild(spinnerDiv);
+  
+  container.appendChild(spinnerDiv); // Append spinner to container
 }
 
+// Function to add data to array based on the model
 const appendDataToArray = (data, model) => {
   switch (model) {
     case 'images':
       const breed = data.breeds[0] ? data.breeds[0].name : '';
       const imageUrl = data.url;
-      if (!imageUrl.endsWith('.gif')) { 
+      if (!imageUrl.endsWith('.gif')) { // Exclude GIF images
         currentDataArray.push({ 'breed': breed, 'imageUrl': imageUrl });
       }
       break;
@@ -109,6 +122,7 @@ const appendDataToArray = (data, model) => {
   }
 }
 
+// Function to create a data card element
 const createDataCard = (data, model) => {
   const card = document.createElement('div');
   switch (model) {
@@ -167,8 +181,8 @@ const createDataCard = (data, model) => {
         card.appendChild(origin);
       }
   }
-  return card;
+  return card; // Return the created card element
 }
 
-
+// Generate initial page elements for the current model
 generatePageElements(currentModel);
