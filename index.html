@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
+    <!-- Header section containing logo and model switch -->
     <div class="header-container">
       <div class="logo-container">
+        <!-- DogAPI logo -->
         <img src="img/dogLogo.png" alt="DogAPI Logo" class="logo" />
       </div>
+      <!-- Main heading for the application -->
       <h1>Discover Your Perfect<br />Dog Breed</h1>
       <div class="header__switch-model">
+        <!-- Radio buttons for switching between images and breeds models -->
         <label class="switch">
           <input type="radio" id="images" name="model" value="images" checked />
           <span class="switch-button">Dogs Images</span>
@@ -25,23 +29,28 @@
     </div>
 
     <main>
+      <!-- Section for displaying dog images -->
       <section class="images">
         <h3>Discover Amazing Dog Photos</h3>
         <p>
           Browse through a collection of random dog images that are sure to
           bring a smile to your face!
         </p>
+        <!-- Container for dynamically inserted dog images -->
         <div class="section__container"></div>
       </section>
+      <!-- Section for displaying information about dog breeds -->
       <section class="breeds">
         <h3>Learn About Different Dog Breeds</h3>
         <p>
           Find detailed information about various dog breeds, including their
           characteristics, care needs, and more.
         </p>
+        <!-- Container for dynamically inserted breed information -->
         <div class="section__container"></div>
       </section>
     </main>
+    <!-- Link to external JavaScript file for functionality -->
     <script src="./js/index.js"></script>
   </body>
 </html>
